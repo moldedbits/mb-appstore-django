@@ -29,3 +29,8 @@ Podfile.lock
 #OSX
 .DS_Store
 munch/.DS_Store
+
+#DJANGO
+env
+*.pyc
+__pycache__
