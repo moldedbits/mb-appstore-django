@@ -34,3 +34,4 @@ munch/.DS_Store
 env
 *.pyc
 __pycache__
+*.sqlite3
