@@ -35,5 +35,5 @@ env
 *.pyc
 __pycache__
 *.sqlite3
-celerybeat-schedule.db
+*.db
 *.pid
