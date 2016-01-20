@@ -1,7 +1,7 @@
 {% if latest_question_list %}
     <ul>
     {% for r in latest_question_list %}
-        <li><a href="{{ r.manifest_url }}">{{ r.display_name }}</a></li>
+        <li><a href="itms-services://?action=download-manifest\&url={{ r.manifest_url }}">{{ r.display_name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
