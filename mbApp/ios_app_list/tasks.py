@@ -16,6 +16,7 @@ logger = get_task_logger(__name__)
     ignore_result=True
 )
 def iterate_bucket():
+    IosApp.objects.all().delete()
     s3 = boto3.resource('s3')
     bucket = s3.Bucket('mb-appstore')
     exists = True
