@@ -8,3 +8,9 @@ class AppResource(models.Model):
 
     def __str__(self):
         return self.resource_key
+
+class IosApp(models.Model):
+    display_name = models.CharField(max_length=200)
+    manifest_url = models.CharField(max_length=300)
+    def __str__(self):
+        return self.display_name

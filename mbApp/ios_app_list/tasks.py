@@ -1,7 +1,7 @@
 from celery.task.schedules import crontab
 from celery.decorators import periodic_task
 from celery.utils.log import get_task_logger
-from .models import AppResource
+from .models import IosApp
 import boto3
 import botocore
 
@@ -16,8 +16,6 @@ logger = get_task_logger(__name__)
     ignore_result=True
 )
 def iterate_bucket():
-    a_r = AppResource(resource_key = 'yoyoyoy ')
-    a_r.save()
     s3 = boto3.resource('s3')
     bucket = s3.Bucket('mb-appstore')
     exists = True
@@ -29,11 +27,9 @@ def iterate_bucket():
         error_code = int(e.response['Error']['Code'])
         if error_code == 404:
             exists = False
-            a_r = AppResource(resource_key = '404 ')
-            a_r.save()
     if exists:
         for key in bucket.objects.all():
-            a_r = AppResource(resource_key = '%s' %key.key)
-            a_r.save()
-
-
+            if key.key.endswith('.plist'):
+                murl = 'https://mb-appstore.s3.amazonaws.com/'+key.key
+                a_r = IosApp(display_name = '%s' %key.key, manifest_url = '%s' %murl)
+                a_r.save()

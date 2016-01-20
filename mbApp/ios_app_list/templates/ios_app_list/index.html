@@ -1,0 +1,9 @@
+{% if latest_question_list %}
+    <ul>
+    {% for r in latest_question_list %}
+        <li><a href="{{ r.manifest_url }}">{{ r.display_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No apps are available.</p>
+{% endif %}
