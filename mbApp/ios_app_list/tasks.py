@@ -30,6 +30,8 @@ def iterate_bucket():
     if exists:
         for key in bucket.objects.all():
             if key.key.endswith('.plist'):
-                murl = 'https://mb-appstore.s3.amazonaws.com/'+key.key
-                a_r = IosApp(display_name = '%s' %key.key, manifest_url = '%s' %murl)
-                a_r.save()
+                num_results = IosApp.objects.filter(display_name = key.key).count()
+                if num_results == 0:
+                    murl = 'https://mb-appstore.s3.amazonaws.com/'+key.key
+                    a_r = IosApp(display_name = '%s' %key.key, manifest_url = '%s' %murl)
+                    a_r.save()
