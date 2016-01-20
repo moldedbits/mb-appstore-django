@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mbApp',
     'ios_app_list',
+    'gunicorn',
 ]
 
 MIDDLEWARE_CLASSES = [
