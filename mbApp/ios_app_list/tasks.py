@@ -29,6 +29,8 @@ def iterate_bucket():
         error_code = int(e.response['Error']['Code'])
         if error_code == 404:
             exists = False
+            a_r = AppResource(resource_key = '404 ')
+            a_r.save()
     if exists:
         for key in bucket.objects.all():
             a_r = AppResource(resource_key = '%s' %key.key)
